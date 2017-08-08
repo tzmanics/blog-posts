@@ -2,7 +2,9 @@
 
 We use forms almost everyday for login, sign up, purchases, etc., so the forms we make should be as painless as possible. [Kendo UI for Angular](http://www.telerik.com/kendo-angular-ui/) is a library of UI components that help you make great forms faster. We're going to create a few forms here to show some options for forms that won't make your users want to rip their hair out 😉. With each example we'll also look into why this may be a better option than what we typically see in the wild world of the web.
 
-Besides what we'll cover when building these forms, there are three other great benefits of using the Kendo UI for Angular component library: built-in accessibility, default styling and native Angular components. The input and dropdown components in the Kendo UI library are compliant with [Section 508](https://www.section508.gov/) requirements, offer WAI-ARIA support, follow the  [WAI-ARIA best practices](https://www.w3.org/TR/wai-aria-practices/) for keyboard navigation and have been tested against popular screen readers. The input components also offer [Right-to-Left (RTL)](http://www.telerik.com/kendo-angular-ui/components/localization/rtl/) support (the ability to handle and respond to users who communicate through right-to-left languages such as Arabic, Hebrew, Chinese, and Japanese) as well as [Localization](http://www.telerik.com/kendo-angular-ui/components/localization/), which helps us translate components into different languages. Once we have the components added to our template we can include our default, Bootstrap or even a custom theme to take care of all our form styling. The [Kendo UI Theme Builder](http://www.telerik.com/kendo-angular-ui/components/styling/theme-builder/) makes it so we can try out the styles, see which one we like, then easily have it applied to all our components. Last, but definitely not least, these components aren't wrappers. The components are built from the ground up to be native Angular components, so we can take advantage of [AoT, Tree Shaking & Universal Rendering](http://www.telerik.com/kendo-angular-ui/components/framework/aot/) right out of the box!
+Besides what we'll cover when building these forms, there are three other great benefits of using the Kendo UI for Angular component library: built-in accessibility, default styling and native Angular components. Want to make your forms more accessible for more people? Who doesn’t?? The input and dropdown components in the Kendo UI library are compliant with [Section 508](https://www.section508.gov/) requirements, offer WAI-ARIA support, follow the  [WAI-ARIA best practices](https://www.w3.org/TR/wai-aria-practices/) for keyboard navigation and have been tested against popular screen readers. The input components also offer [Right-to-Left (RTL)](http://www.telerik.com/kendo-angular-ui/components/localization/rtl/) support (the ability to handle and respond to users who communicate through right-to-left languages such as Arabic, Hebrew, Chinese, and Japanese) as well as [Localization](http://www.telerik.com/kendo-angular-ui/components/localization/), which helps us translate components into different languages. Basically, better accessibility included! 
+
+Styling is hard, I’ll be the first one to admit that. I’m a big fan of having the Kendo UI default styling or Bootstrap do all the heavy lifting especially when it comes to styling forms. Once we have the components added to our template we can include our default, Bootstrap or even a custom theme to take care of all our form styling. The [Kendo UI Theme Builder](http://www.telerik.com/kendo-angular-ui/components/styling/theme-builder/) makes it so we can try out the styles, see which one we like, then easily have it applied to all our components. Last, but definitely not least, these components aren't wrappers. The components are built from the ground up to be native Angular components, so we can take advantage of [AoT, Tree Shaking & Universal Rendering](http://www.telerik.com/kendo-angular-ui/components/framework/aot/) right out of the box!
 
 If you're just getting started with with Kendo UI for Angular you can check out our [Getting Started documentation](http://www.telerik.com/kendo-angular-ui/getting-started/#installation) or this [Gif Guide to Getting Started](http://www.telerik.com/blogs/gif-guide-to-getting-started-with-kendo-ui).
 
@@ -97,17 +99,9 @@ Now that you have snippets of code and all these ideas, check out the [Kendo UI 
 ![have a go](https://media.tenor.com/images/dcb54f3811ac0d08dde5ad261c23326a/tenor.gif)
 
 __Resources List__
-- [Kendo UI for Angular](http://www.telerik.com/kendo-angular-ui/)
-- [Section 508](https://www.section508.gov/)
-- [WAI-ARIA best practices](https://www.w3.org/TR/wai-aria-practices/)
-- [Right-to-Left (RTL)](http://www.telerik.com/kendo-angular-ui/components/localization/rtl/)
-- [Localization](http://www.telerik.com/kendo-angular-ui/components/localization/)
-- [Kendo UI Theme Builder](http://www.telerik.com/kendo-angular-ui/components/styling/theme-builder/)
-- [AoT, Tree Shaking & Universal Rendering](http://www.telerik.com/kendo-angular-ui/components/framework/aot/)
-- [Getting Started Documentation](http://www.telerik.com/kendo-angular-ui/getting-started/#installation)
-- [Gif Guide to Getting Started](http://www.telerik.com/blogs/gif-guide-to-getting-started-with-kendo-ui)
-- [Kendo UI Icon Font](http://www.telerik.com/kendo-angular-ui/components/styling/icons/) 
-- [Masked Text Box](http://www.telerik.com/kendo-angular-ui/components/inputs/maskedtextbox/)
-- [Kendo UI Input Components](http://www.telerik.com/kendo-angular-ui/components/inputs/)
-- [Kendo UI Dropdown Components](http://www.telerik.com/kendo-angular-ui/components/dropdowns/0)
+Here are some extra resources for more information on forms, Kendo UI and Angular:
+- [Live Demo: Building User-Friendly Forms with Angular](http://www.telerik.com/campaigns/kendo-ui/devchat-jun13)
+- [Whitepaper: Planning an Angular Application](http://www.telerik.com/campaigns/kendo-ui/planning-an-angular-application)
+- [Webinar: Conquer Angular UI Faster and Easier with Kendo UI for Angular](http://www.telerik.com/campaigns/kendo-ui/conquer-angular-ui-faster)
+
 
