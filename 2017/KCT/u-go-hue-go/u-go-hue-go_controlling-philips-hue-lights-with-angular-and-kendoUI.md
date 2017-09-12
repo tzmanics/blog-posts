@@ -20,7 +20,7 @@ ng new u-go-hue-go-tutorial --ng4 --style="scss"
 
 *`--style="scss"` tells the CLI to create the project using sass for styling*
 
-🐙 [Here is the commit](https://github.com/tzmanics/U-Go-Hue-Go-Tutorial/commit/75f69bff0279a9793ddde4035b131dd6a2f4a5ec) for the project the CLI created.
+🐙 [Here is the commit](https://github.com/tzmanics/U-Go-Hue-Go-Tutorial/commit/75f69bff0279a9793ddde4035b131dd6a2f4a5ec) for the initial project the CLI created.
 
 ## Connecting to the Hue Bridge
 In order to talk to the Hue lights I needed to connect the Hue Bridge to the network, obtain its IP address and authorize the user to get the username. This is a bit out of scope for this post but you can find all the information on how to do that [here](https://www.developers.meethue.com/documentation/getting-started) on Philips Hue's Developer Program page.
@@ -77,17 +77,22 @@ import { HttpClient } from '@angular/common/http'; // 👈
 
 export class AppComponent implements OnInit {
   // new code starts here
-  username: string = "<insert username>";
-  hueApiUrl: string = `http://<insert hue bridge ip>/api/${this.username}/lights`;
-  lights: string[];
+  private username: string = "<username here>";
+  // ex: 2DNWwpZpUyMZ3zzaGM53HWA70kwxCu-YFTzBojG2
+  private hueApiUrl: string = `http://<Bridge IP here>/api/${this.username}/lights`;
+  // ex: 192.168.0.110
+  private lights: string[];
   
   constructor(private http: HttpClient) {}
-  
   
   ngOnInit(): void {
     this.http.get(this.hueApiUrl)
     .subscribe(
-      data => { this.lights = Object.keys(data).map(key => data[key]); },
+      data => {
+        this.lights = Object.values(data);
+        // for early browser version and ie support
+        // this.lights = Object.keys(data).map(key => data[key]);
+      },
       err => { console.log('Something went wrong!'); }
     );
   }
@@ -116,6 +121,9 @@ The `HttpClient` returns an observable that must be subscribed to. The observabl
   err => { console.log('Something went wrong!'); }
 );
 ```
+
+*`Object.values(data)` is a method that returns an array by going through the `data` values, like how using a `for...in` loop would do, check out more info here. This let me turn the object received into an array we could iterate over in the template. This is a pretty new method so is not supported on ie so I added a more supported method in the comments.*
+`
 *`Object.keys(data)` is a method that iterates over an object's properties and makes it an array (more info [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)). I then mapped over that array to add the light's properties to the newly created array items.* 
 
 ### Show The Lights
@@ -138,7 +146,7 @@ To see all the lights I received from the API call I edited the main template fi
 
 *`{{ light | json }}` takes the light object and pipes the information to json formant.*
 
-After adding this code, run `ng serve` from the terminal to see what shows up.
+After adding this code, run `ng serve` from the terminal and head over to `localhost:4200` to see what shows up.
 
 ✨Eureka, we haz lights!
 ![all the light information](images/lights.png)
