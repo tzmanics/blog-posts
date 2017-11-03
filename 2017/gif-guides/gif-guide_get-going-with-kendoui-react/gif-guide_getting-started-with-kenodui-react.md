@@ -18,3 +18,4 @@ First, we need to create a React app with the aptly names `create-react-app` lib
 npm install create-react-app -g
 ```
 
+npm i
