@@ -1,12 +1,12 @@
 # Gif Guide
 ## Get Going with Kendo UI & React
 
-I am extremely excited to announce our new wrappers for React.js! To help you get started I'm going to walk through how to get setup and create a React application with some inputs and visualizations. Here's what we'll be covering:
+I am extremely excited to announce our new wrappers for React.js! To help you get started I'm going to walk through how to get setup and create a React application with a date picker. Here's what we'll be covering:
 
 - Installing & creating a React app with [`create-react-app`](https://github.com/facebookincubator/create-react-app)
 - Installing [Kendo UI components](https://www.telerik.com/kendo-react-ui)
 - Adding Kendo UI [Material styling](https://www.telerik.com/kendo-angular-ui/components/styling/theme-material/)
-- Implementing a Kendo UI Datepicker component
+- Implementing a Kendo UI `Datepicker` component
 - Where to go next :)
 
 ### Creating A React App
@@ -38,7 +38,7 @@ For instance:
 
 ### Installing The Helpers
 
-Alright, now we're cooking with fire! There are a few libraries that will help us build our robust, React app, so let's use npm to install those now. First, we install the Kendo UI library by running
+Alright, now we're cooking with gas! There are a few libraries that will help us build our robust, React app, so let's use npm to install those now. First, we install the Kendo UI library by running
 
 ```bash
 npm i @progress/kendo-ui
