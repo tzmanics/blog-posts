@@ -17,7 +17,7 @@ There are may be other things I could cover, if you think of any, add a comment,
 
 Let's check in with [ECMA International, Technical Committee 39](https://github.com/tc39)! It turns out the 6 in ES6 does not stand for the number of years it takes for a release. I kid! Since ES6/ES2015 took so long to release (6 years, hence my jab) the committee decided to move to a yearly small-batch release instead. I'm a big fan of this and I think the momentum keeps things moving and JavaScript improving. What presents did we get for ES2017 and what's on our list for ES2018?
 
-TODO: add a note here about the process of proposals being slated for a release https://tc39.github.io/process-document/
+**You can learn more about the TC39 process of proposals [here](tps://tc39.github.io/process-document/)*
 
 ### ES2017
 In January, at the TC39 meeting, the group settles on the ECMAScript proposals that would be slated as the features of ES2017 (also referred to ES8, which probably should be nixed to avoid confusion). This list included:
@@ -28,8 +28,7 @@ In January, at the TC39 meeting, the group settles on the ECMAScript proposals t
 
 **Minor features**
 -	[`Object.values/Object.entries`](https://github.com/tc39/proposal-object-values-entries)
--	String padding
-TODO: add link here
+-	[String padding](https://github.com/tc39/proposal-string-pad-start-end)
 -	[`Object.getOwnPropertyDescriptors()`](https://github.com/tc39/proposal-object-getownpropertydescriptors)
 - [Trailing commas in function parameter lists and calls](https://github.com/tc39/proposal-trailing-function-commas)
 
@@ -77,26 +76,31 @@ This doesn't mean you should go in and replace all promises in your code with `a
 ### Shared Memory and Atomics
 [Proposed by: Lars T. Hansen](https://github.com/tc39/ecmascript_sharedmem)
 
-Wait, did we enter a theoretical physics class? Sounds fun, but no. This ECMAScript propsal joined the ES2017 line up and introduces `SharedArrayBuffer` and a namespace object `Atomics` with helper functions. We'll dive in a little but for a more detailed look: [Dr.Axel to the rescue!](http://2ality.com/2017/01/shared-array-buffer.html)
+Wait, did we enter a theoretical physics class? Sounds fun, but no. This ECMAScript propsal joined the ES2017 line up and introduces `SharedArrayBuffer` and a namespace object `Atomics` with helper functions. We'll dive in a little but for a more detailed look: [Dr.Axel to the rescue!](http://2ality.com/2017/01/shared-array-buffer.html) Super high-level (pun intended), this proposal is our next step towards [high-level parallelism in JavaScript](http://2ality.com/2017/01/shared-array-buffer.html).
 
-Super high-level, this proposal is our next step towards [parallelism in JavaScript](https://blog.mozilla.org/javascript/2015/02/26/the-path-to-parallel-javascript/).
+We're using JavaScript for more and more operations in the browser relaying on Just-in-Time compilers and fast CPUs. Unfortunately, as Lars T. Hansen say in his awesome post, [A Taste of JavaScript’s New Parallel Primitives](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives/) from May 2016:
 
-TODO: check in to changes with SIMD
-https://github.com/tc39/ecmascript_simd/
+> But JS JITs are now improving more slowly, and CPU performance improvement has mostly stalled. Instead of faster CPUs, all consumer devices — from desktop systems to smartphones — now have multiple CPUs (really CPU cores), and except at the low end they usually have more than two. A programmer who wants better performance for her program has to start using multiple cores in parallel. That is not a problem for “native” applications, which are all written in multi-threaded programming languages (Java, Swift, C#, and C++), but it is a problem for JS, which has very limited facilities for running on multiple CPUs (web workers, slow message passing, and few ways to avoid data copying).
 
-In ES6 support for SIMD (low-level parallelism) was added and made it so we can perform operations on multiple integers or floats simulanteously. Check out [this article](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives/) on the Parallel Primitives by the proposer, [Lars T. Hansen](https://github.com/lars-t-hansen), himself. This proposal provides us with the building blocks to research different approaches to implement higher-level constructs in JavaScript.
+#### `SharedArrayBuffer`
 
-What might those building blocks be? May I introduce you to `SharedArrayBuffer`. [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) had a great succinct definition so I'll just plop that in right here:
+This proposal provides us with the building blocks for multicore computation to research different approaches to implement higher-level constructs in JavaScript. What might those building blocks be? May I introduce you to `SharedArrayBuffer`. [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) had a great succinct definition so I'll just plop that in right here:
 
 > The `SharedArrayBuffer` object is used to represent a generic, fixed-length raw binary data buffer, similar to the `ArrayBuffer` object, but in a way that they can be used to create views on shared memory. Unlike an `ArrayBuffer`, a `SharedArrayBuffer` cannot become detached.
 
 I don't know about you but the first time I read that I was like, "wat."
 
-![wat wat wat](wat.gif)
+![wat wat wat](images/wat.gif)
 
-Basically, one of the first ways we were able to run tasks in parrallel was with web workers. Since the workers ran in their own global environments they were unable to share, by defualt, until communication between the workers, or betweeen workers and the main thread, evolved. The `SharedArrayBuffer` object allows you to share bytes of data between multiple workers and the main thread.
+Basically, one of the first ways we were able to run tasks in parrallel was with web workers. Since the workers ran in their own global environments they were unable to share, by default, until communication between the workers, or betweeen workers and the main thread, evolved. The `SharedArrayBuffer` object allows you to share bytes of data between multiple workers and the main thread. Plus, unlike it's predecessor [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) the memory represented by `SharedArrayBuffer` can be referenced from multiple agents, web arokers or the web page's main program, simultaneously. You can do this using [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) to *transfer* the `SharedArrayBuffer` from one of these agents to the another.
 
--TODO: add bit about `Atomics`
+#### `Atomics`
+
+When sharing a `SharedArrayBuffer` betwixt (keeping it classy) agents, each of those agents can read and write to its memory at any time by creating `TypedArray` views on the buffer and using standard array access on the view. So, how do you keep this sane and organized, making sure each agent knows to wait for another agent to finish writing their data? Yes, you read the header, the new top-level object, `Atomics`. This object has atomic operations present as static methods. For now, `Atomics` has only two methods that can be send as signals from one worker to another: `Atomics.wait` and `Atomics.wake`. Hansen talks about more methods, like `Atomics.load`, `Atomics.store` and `Atomics.compareExchange`, to truly implement synchronization.
+
+I could keep diving into this but there are still more awesome propsals to cover, so, if you're interested in learning more check out these article:
+- [2ality's rundown of the proposal](http://2ality.com/2017/01/shared-array-buffer.html)
+- [A Taste of JavaScript’s New Parallel Primitives](https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives/) from Lars T. Hansen
 
 ### `Object.values/Object.entries`
 [Proposed by: Jordan Harband](https://github.com/tc39/proposal-object-values-entries)
@@ -127,30 +131,34 @@ It's really quite straight forward, but if you ever want to dive in more, [JavaS
 ### String Padding
 [Proposed by : Jordan Harband, Rick Waldron](https://github.com/tc39/proposal-string-pad-start-end)
 
-I didn't think I was going to have to say this again but, left pad. Yes, the [left pad](http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm) debacle of 2016 raised the attention of the JavaScript community enough for TC39 to add string padding. To be fair though, it was about time for JavaScript to have some native methods to handle Strings. ✨ Welcome `padStart`, `padEnd` to the family, which currently was just a lonely `String.prototype.trim` (est. ES5)!
+I didn't think I was going to have to say this again but, left pad. Yes, the [left pad](http://blog.npmjs.org/post/141577284765/kik-left-pad-and-npm) debacle of 2016 raised the attention of the JavaScript community enough for TC39 to add string padding. To be fair though, it was about time for JavaScript to have some native methods to handle Strings. ✨ Welcome [`padStart`, `padEnd`](https://codeburst.io/learn-javascript-es-2017-string-padding-padstart-padend-88e90783e7de) to the family, which currently was just a lonely `String.prototype.trim` (est. ES5)!
 
 ![we've been waiting](images/waiting.gif)
 
 You are all smart people so you probably can surmize what each of these methods do. So, I'll just show you some examples instead of using my words.
 
-TODO: add examples
-
 ```js
-'puppies'.padStart(5)
-//'puppies`
+// padStart adds padding until string reaches provided length
+'puppies'.padStart(22)
+// "               puppies"
+
+// or provide a filler instead of blank spaces
+'nachos'.padStart(11, 'yum')
+// "yumyunachos"
+
+// padEnd works the same but adds to the end of the string
+'Carlos Santana'.padEnd(30, '*-^')
+// "Carlos Santana*-^*-^*-^*-^*-^*"
 
 // Emoji trickiness
 '🍞🥞🥚🌭'.padEnd(8)
-"🍞🥞🥚🌭" // no pad? yup, because the length === 8
-
+// "🍞🥞🥚🌭" // no pad? yup, because the length === 8
 
 ```
 
-TODO: Explain examples
+I've seen this presented as a handy way to align items coming in at different string lengths. Yet, some are wary of "styling" at this level. What are your thoughts?
 
-TODO: trimStart/trimEnd
-TODO: why left right then start end
-https://github.com/tc39/proposal-string-left-right-trim currently in stage 2
+There are more methods in the pipeline: [`trimStart/trimEnd`](https://github.com/tc39/proposal-string-left-right-trim) is currently at stage 2. This will let us remove starts and ends of strings. Fun fact: this propsal started out with `trimLeft` and `trimRight` but to stay consistent with `padStart\padEnd` has since been updated. Yay, consitency! It also helps with any confusion whether a language is read right-to-left or left-to-right ✅
 
 ### `Object.getOwnPropertyDescriptors()`
 [Proposed by: Jordan Harband & Andrea Giammarchi](https://github.com/tc39/proposal-object-getownpropertydescriptors)
@@ -195,15 +203,26 @@ Why do we need these methods? Well the proposer, Jordan Harband, puts it well he
 
 > There is not a single method in ECMAScript capable of simplifying a proper copy between two objects. In these days more than ever, where functional programming and immutable objects are essential parts of complex applications, every framework or library is implementing its own boilerplate in order to properly copy properties between composed objects or prototypes. — Jordan Harband
 
-TODO: talk about how you can do a true copy with 
-Object.create(
-  Object.getPrototypeOf(obj),
-  Object.getOwnPropertyDescriptors(obj)
+With this addition you can now use `getPrototypeOf` and `getOwnPropertyDescriptors` with `objectCreate` to copy object and easily give it the same prototype and property descriptors. Before, this was most often done using `Object.assign` which would grab an object's properties and symbols instead of descriptors. That approach left the risk of discarding possible accessors.
+
+```js
+// just to give you a bit of an idea
+const toshmagosh = {
+  cuteLevel: 11,
+  breed: 'Blue Pomeranian',
+  treatTime: treat => {
+    console.log(`Do you want a ${treat}?`)
+  }
+}
+
+const newPuppy = Object.create(
+  Object.getPrototypeOf(toshmagosh),
+  Object.getOwnPropertyDescriptors(toshmagosh)
 );
-Unlike ⬇
 
-TODO: `Object.assign() has probably been most people's go to for creating a duplicate but 
-
+// newPuppy
+// {cuteLevel: 11, breed: "Blue Pomeranian", treatTime: ƒ}
+```
 
 ### Appreciation Pause
 
@@ -235,71 +254,89 @@ Dr. Axel is here to keep you up-to-date with the happenings of ES2018: http://2a
 
 Usually, at this point we're looking at Stage 4 proposals, this stage means it will be added in the next release, and Stage 3 proposals, not definite but has a chance of being inclided in the next release.
 
-So far, the stage 4-ers are [Template Literal Revision]() proposed by Tim Disney and [`s (dotAll)` flag for regular expressions]() from Mathias Bynens.
+So far, the stage 4-ers are:
 
-TODO: add links and a little detail
+- [Template Literal Revision](https://github.com/tc39/proposal-template-literal-revision) proposed by Tim Disney. Currently, the escape sequence in template literals is problematic for embedding languages like domain-specific languages. This proposal will remove the restriction on escape sequences, to understand more [click here](https://tc39.github.io/proposal-template-literal-revision/) 👆
+- [`s (dotAll)` flag for regular expressions]() by Mathias Bynens. This proposal is all about emojis!🎈 Okay, not entirely, but it introduces the `/s` flag into regular expressions to make up for the dot's (`.`) shortcomings (like not matching with non-BMP character such as emoji). There is more to it though, so check out Mathias's [proposal](https://github.com/tc39/proposal-regexp-dotall-flag).
 
-The list of stage 3-ers is a bit longer so I will give you [this]() helpful link to see the table and an image of it down below. How nice is that 😉
+The list of stage 3-ers is a bit longer so I will give you [this](https://github.com/tc39/proposals#stage-3) helpful link to see the table and an image of it down below. How nice is that 😉
 
-TODO: add link and screenshot
+![stage 3 proposals](images/stage3.PNG)
 
 ## How to JavaScript in 2017
 
-After discussing what changed in the standard used to create JavaScript, now how to WE use JavaScript? Last year many people, including myslef, were talking about JavaScript fatigue. Yes, the ways to write a JavaScript application have not really slimmed down BUT with a lot of CLI tools doing much of the heavy lifting, we can relax a little.
+After discussing what changed in the standard used to create JavaScript, now how do we USE JavaScript? Last year many people, including myslef, were talking about JavaScript fatigue. Yes, the ways to write a JavaScript application have not really slimmed down BUT with a lot of command-line tools doing much of the heavy lifting, transpiling becoming less crucial and TypeScript trying to minimize tye errors, we can relax a little.
 
-TODO: add relax gif
+![just relax](images/relax.gif)
 
-### CLI Tools
+### Command-line Tools
 
-Most all libraries have CLI tools, so what all are they helping us do in 2017?
-
-TODO: elaborate and give examples
+Most libraries and frameworks have a command-line tool that, with one command, will spin up skeleton projects for us to quickly create whatever our little hearts desire. This will often include a start script (sometimes with an auto re-loader), build scripts, testing structure and more. These tools are relieveing us of a lot of redunant file making when we create new projects. Let's look at few more things some command line tools are taking off our plates.
 
 #### Webpack configurations
 
-Configuring your webpack build process and really understanding what you were doing, was probably one of the more daunting learning curves of 2017. Thanksfully, they had one of their core contributors, [Sean Larkin](), running around the world supplying us with [great talks]() and [helpful tutorials]().
+Configuring your webpack build process and really understanding what you were doing, was probably one of the more daunting learning curves of 2017. Thanksfully, they had one of their core contributors, [Sean Larkin](https://twitter.com/thelarkinn), running around the world supplying us with [great talks](https://www.youtube.com/watch?v=4tQiJaFzuJ8&t=3526s) and [really fun and helpful tutorials](https://www.twitch.tv/videos/209664650?t=1h57m40s).
 
-TODO: add Sean's links
+Many frameworks used nowadays not only create the webpack config files for you but even populate them to the point that you may not even have to LOOK at it 😮 Vue's CLI tool even has a [The [preact-cli](https://github.com/developit/preact-cli#webpack) takes care of the standard webpack functionality then if you need to customize you create a `preact.config.js` file which exports a function that makes your webpack changes.
 
-TODO: what are some standard webpack configs happening in CLI tools
+### Babel On or Off
 
-### Babel On
+Get it? Sounds like Babylon 😂. I crack myself up. I'm not *exactly* tying Babel to the **ancient** city of Babylon, but there has been [talk](https://medium.freecodecamp.org/you-might-not-need-to-transpile-your-javascript-4d5e0a438ca) possibly removing our reliance on transpiling. Babel has been a big deal for the past few years because we wanted all the shiny that ECMAScript was proposing but didn't want to wait for the browsers to catch up. With ECMAScript moving to yearly small releases browsers may be able to keep up. What is a JavaScript post without some of the awesome [kangax](https://twitter.com/kangax?lang=en) compatability charts.
 
-Get it? Sounds like Babylon 😂. I crack myself up. Babel has been a big deal for the past few years because we wanted all the shiny that ECMAScript was proposing but didn't want to wait for the browsers to catch up.
+These images of these charts aren't legible because I wanted to showcase just how green they are! For full detail click the links below the images to inspect the charts further.
 
-TODO: how is Babel being used now?
+![look at all that green](images/greenscreen.PNG)
+
+[Compatability for es6](http://kangax.github.io/compat-table/es6/)
+
+![still looking green](images/2016-2018.PNG)
+
+[Compatability for 2016+](http://kangax.github.io/compat-table/es2016plus/)
+
+To put some of this into perspective here are some browser usage percentages from [Wikipedia](https://en.wikipedia.org/wiki/Usage_share_of_web_browsers).
+
+![browser usage statistics](images/browser-usage.PNG)
+
+Okay, turning off Babel may be a long ways aways because when it comes down to it we want to make a concerted effort to be accessible to as many users as we can. It is interesting to consider that we may be able to get rid of that extra step. You know, like before, when we didn't use transpilers 😆
+
+
+![same but different](images/same.gif)
 
 ### TypeScript Talk
 
-If we're talking about how to JavaScript we must talk about TypeScript. TypeScript came out of the Microsoft office five years ago but has been the cool kid in town 😎 in 2017. There was rarely a conference that didn't have a "Why We Love TypeScript" talk, it's like the new dev heartthrob.
+If we're talking about how to JavaScript we must talk about TypeScript. TypeScript came out of the Microsoft office five years ago but has been the cool kid in town 😎 in 2017. There was rarely a conference that didn't have a "Why We Love TypeScript" talk, it's like the new dev heartthrob. Without writing a sonnet to TypeScript let's talk a bit about why developers are crushing hard.
 
-TODO: add transition something here
+For everyone who wanted types in JavaScript, TypeScript is here to offer a strict syntactical superset of JavaScript which gives optional static typing. Pretty cool, if you're into that kind of thing. Of course, if you take a look at the newest results from the [State of JavaScript](https://stateofjs.com/2017/introduction/) survey, it seems that a lot of people ARE, in fact, into that kind of thing.
 
-For everyone who wanted types in JavaScript, TypeScript is here to offer a strict syntactical superset of JavaScript which gives optional static typing. Pretty cool, if you're into that kind of thing. Of course, if you take a look at the newest results from the [State of JavaScript]() survey, it seems that a lot of people ARE, in fact, into that kind of thing.
-
-TODO: add survey results & link
+![JS Flavors Comparison](images/typescript-chart.PNG)
 
 ![do your thang](images/your-thang.gif)
 
-> Speaking as someone who proposed types for JavaScript in 2014: I do not believe types are in the cards for the near future. This is an extremely complex problem to get right from a standards perspective. Just adopting TypeScript as the standard would of course be great for TypeScript users, but there are other typed JS supersets with pretty significant usage including closure compiler and flow. These tools all behave differently and it’s not even clear that there’s a common subset to work from (I don’t think there is in any appreciable sense). I’m not entirely sure what a standard for types looks like, and I and others will continue to investigate this as it could be very beneficial, but don’t expect anything near term - [HashNode AMA with Brian Terlson](https://hashnode.com/ama/with-brian-terlson-cj6vu9vjv01nmo1wu8vmtt1x9#cj6vuspfq01oso1wuhjo5zvd6) 
+> Speaking as someone who proposed types for JavaScript in 2014: I do not believe types are in the cards for the near future. This is an extremely complex problem to get right from a standards perspective. Just adopting TypeScript as the standard would of course be great for TypeScript users, but there are other typed JS supersets with pretty significant usage including closure compiler and flow. These tools all behave differently and it’s not even clear that there’s a common subset to work from (I don’t think there is in any appreciable sense). I’m not entirely sure what a standard for types looks like, and I and others will continue to investigate this as it could be very beneficial, but don’t expect anything near term - [HashNode AMA with Brian Terlson](https://hashnode.com/ama/with-brian-terlson-cj6vu9vjv01nmo1wu8vmtt1x9#cj6vuspfq01oso1wuhjo5zvd6)
 
 #### TypeScript ❤s Flow
 
-TODO: add details about the TS/Flow combo and the benefits
-- https://twitter.com/mgechev/status/940131449025347589
-![typescript and flow benefits](images/typescript-flow.png)
+In 2017, you have probably seen many [blog posts](http://thejameskyle.com/adopting-flow-and-typescript.html) TypeScript discussing the TypeScript + Flow combo. [Flow](https://flow.org/) is a static type checker for JavsScript. Flow As you can see in the chart listed above, has about as many people interested as they do uninterested. More interesting is the stats showing how many of the people surveyed haven't heard of Flow, yet ⏰. As people learn more about Flow in 2018 maybe they will find it as beneficial as [Minko Gechev](https://twitter.com/mgechev/status/940131449025347589) does:
 
+![typescript and flow benefits](images/typescript-flow.PNG)
+- 
 #### Angular ❤s TypeScript
 
-One may notice that all the code samples in Angular documentation are written in TypeScript. At one point, there was an option that you could choose to talk through the tutorial in JavaScript or TypeScript but it seems Angular's heart has been swayed.
+One may notice that all the code samples in Angular documentation are written in TypeScript. At one point, there was an option that you could choose to walk through the tutorial in JavaScript or TypeScript but it seems Angular's heart has been swayed. Looking at the chart below connecting Angular to JS flavors we can see that there is actually a tiny bit more users connecting Angular to ES6 (TypeScipt: 3777, ES6: 3997). We'll see if all of this effects Angular in 2018.
 
-TODO: talk more to this
-TODO: close out this section
+![angular connections](images/angular-connections.png)
+
+TODO: Can we add a link to Alyssa's post here
+
+Undoubtedly, the way we JavsScript will evlolve in 2018. As programmers we like to make and use tools that make our lives easier. Unfortunately, that can sometimes lead to more chaos and too many choices. Thankfully, CLI tools are relieving us of some grunt work and TypeScript has satiated the type-hungry who were sick of type errors.
 
 ## Package Manager Rumble
 
-TODO: add an opener
-[Npm](https://github.com/npm/npm), [Yarn](https://github.com/yarnpkg/yarn) and [Bower](https://github.com/bower/bower) are still the leaders of the pack...age management tools but I also wanted to throw [jspm](https://github.com/jspm). With close to two million installs this year, jspm still going strong. Now this isn't going to be a package manager brawl, despite the heading of this section, I'll give you the info and you can decide what it means to you 😘 I'm not going to lie though, I use npm and like their team and what they do a ton. So, if I come across as bias, it's probably because I am.
+Along the same lines as of *how* to use JavaScript is the discussion of package managers. Modules help us utilize tooling we and other developers make because WHY would you spend time re-writing something that already exists and works well?? If that question has not popped into your head or been repeated in a team meeting at least once in 2017...you might be doing it wrong. Just sayin'.
+
+![really? has it not?](images/really.gif)
+
+Thankfully, we have teams creating better and better experiences for us to install and organize these modules. [Npm](https://github.com/npm/npm), [Yarn](https://github.com/yarnpkg/yarn) and [Bower](https://github.com/bower/bower) are still the leaders of the pack...age management tools but I also wanted to throw [jspm](https://github.com/jspm). With close to two million installs this year, jspm still going strong. Now this isn't going to be a package manager brawl, despite the heading of this section, I'll give you the info and you can decide what it means to you 😘 I'm not going to lie though, I use npm and like their team and what they do a ton. So, if I come across as bias, it's probably because I am.
 
 ![what can i say](images/bias.gif)
 
@@ -312,7 +349,7 @@ bower - 26,929,956
 yarn - 11,154,271
 jspm - 1,859,116 
 
-[graphed comparison](images/bower-jpsm-npm-yarn.png)
+[graphed comparison](images/bower-jpsm-npm-yarn.PNG)
 https://npm-stat.com/
 
 ### NPM
@@ -334,7 +371,7 @@ There are more features on version 5 in particular, you can check out their [blo
 
 Even with the updates in npm 5, Yarn is still faster. Oh, you want to see the speed comparison updated on the daily? Well, Thomas Schaaf has just the thing. That's right, [here](https://docs.google.com/spreadsheets/d/1ZE5B4qJw1kNGMzjgslcWTuPYrpatzQJXSYMGNOhZ2ys/edit#gid=263077280) he has a Google doc where each day the speed comparison is updated.
 
-![npm v yarn speed comparison](images/speed.png)
+![npm v yarn speed comparison](images/speed.PNG)
 https://github.com/thomaschaaf/npm-vs-yarn 
 
 TODO: talk about Yarns updates
@@ -361,8 +398,8 @@ Okay, chunking these all together may seem harsh but, let's be honest, people ar
 
 Which other ones you may ask? Today we’re going to look at three that are currently doing the best in installs this year: [component](https://github.com/componentjs/component), [pnpm](https://github.com/pnpm/pnpm) and [ied](https://github.com/alexanderGugel/ied). If we take a look at the charts, provided by [npm stats](https://npm-stat.com/) (yes, just like yarn, these can all be installed using npm), pnpm is towering over the other two. I also wanted to show with a chart looking at monthly downloads starting at February 2015 that it looks as if component and ied have hit their peak and slowly dying down whereas pnpm is on an upward trajectory. Let’s briefly dig into each project.
 
-![2017 installs](images/component-pnpm-ied_2017.png)
-![installs of their existence](images/component-pnpm-ied.png)
+![2017 installs](images/component-pnpm-ied_2017.PNG)
+![installs of their existence](images/component-pnpm-ied.PNG)
 
 pnpm - 334,497
 component - 35,340
