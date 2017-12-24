@@ -1,6 +1,6 @@
 # Gif Guide
 ## How to Create a PWA with Kendo UI &amp; React
-
+Progressive Web Apps allow you to use today's modern web technologies to...
 - creating the app with preact
   - install preact
   - generate project
