@@ -52,9 +52,29 @@ CALLBACK HELL 😱.
 
 The async/await syntax reads entirely synchronously and was inspired by TJ Holowaychuk's [Co](https://github.com/tj/co) package. As a quick overview, async and await keywords allow you to use them and try/catch blocks to make functions behave asynchronously. They work like generators but are not translated to Generator Functions. This is what that looks like:
 
-// Old Promise Townfunction fetchThePuppies(puppy)  return fetch(puppy)    .then(puppyInfo => puppyInfo.text())    .then(text => {      return JSON.parse(text)    })    .catch(err => {{      console.log(`Error: ${err.message}`)    })}
+// Old Promise Town
+function fetchThePuppies(puppy)
+  return fetch(puppy)
+    .then(puppyInfo => puppyInfo.text())
+    .then(text => {
+      return JSON.parse(text)
+    })
+    .catch(err => {{
+      console.log(`Error: ${err.message}`)
+    })
+}
 
-// New Async/Await Cityasync function fetchThePuppies(puppy)  try {    let puppyInfo = await fetch(puppy)    let text = await puppyInfo.text()    return JSON.parse(text)  }  catch (err) {    console.log(`Error: ${err.message}`)  }}
+// New Async/Await City
+async function fetchThePuppies(puppy)
+  try {
+    let puppyInfo = await fetch(puppy)
+    let text = await puppyInfo.text()
+    return JSON.parse(text)
+  }
+  catch (err) {
+    console.log(`Error: ${err.message}`)
+  }
+}
 
 This doesn't mean you should go in and replace all promises in your code with async/await. Just like you didn't go in and replace every function in your code with arrow functions (one hopes), only use this syntax where it works best. I won’t go too into detail here because [there](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx) [are](https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9) [tons](https://ponyfoo.com/articles/understanding-javascript-async-await) [of](https://javascript.info/async-await) [articles](https://developers.google.com/web/fundamentals/primers/async-functions) [covering](https://blog.risingstack.com/mastering-async-await-in-nodejs/) [async/await](https://codeburst.io/javascript-es-2017-learn-async-await-by-example-48acc58bad65). Check them out (yes, I *did* add a link of a async/await blog post for each of those last words in the previous sentence, you’re welcome 😘).
 
@@ -69,6 +89,8 @@ We're using JavaScript for more and more operations in the browser relying on Ju
 But JS JITs are now improving more slowly, and CPU performance improvement has mostly stalled. Instead of faster CPUs, all consumer devices — from desktop systems to smartphones — now have multiple CPUs (really CPU cores), and except at the low end they usually have more than two. A programmer who wants better performance for her program has to start using multiple cores in parallel. That is not a problem for "native" applications, which are all written in multi-threaded programming languages (Java, Swift, C#, and C++), but it is a problem for JS, which has very limited facilities for running on multiple CPUs (web workers, slow message passing, and few ways to avoid data copying).
 
 #### **SharedArrayBuffer**
+
+//TODO: add section about putting shared array buffer behind a flag because of the Intel security design flaw.
 
 This proposal provides us with the building blocks for multi-core computation to research different approaches to implement higher-level parallel constructs in JavaScript. What might those building blocks be? May I introduce you to SharedArrayBuffer. [MDN has](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) a great succinct definition so I'll just plop that in right here:
 
@@ -108,9 +130,15 @@ Phew! Although that was quite a lot to think about, that was still a high level 
 
 I have actually [benefited from the useful addition of ](https://github.com/tzmanics/U-Go-Hue-Go-Tutorial/tree/5ff8cd88c38f3ad42f40f43aefbda1007b3e391d#get-the-lights)[Object.values](https://github.com/tzmanics/U-Go-Hue-Go-Tutorial/tree/5ff8cd88c38f3ad42f40f43aefbda1007b3e391d#get-the-lights)[ recently](https://github.com/tzmanics/U-Go-Hue-Go-Tutorial/tree/5ff8cd88c38f3ad42f40f43aefbda1007b3e391d#get-the-lights) when pulling Philips Hue light information from an observable. It allowed me to iterate through my data's values because it returns an array of the object's properties.
 
-// land before `Object.values()`const lights = {{ id: 1, on: true, color: ‘blue’}, { id: 2, on: false, color: ‘red’ }}this.lights = Object.keys(data).map(key => data[key])// the time is now aka WITH `Object.values()`this.lights = Object.values(data)
+// land before `Object.values()`
+const lights = {{ id: 1, on: true, color: ‘blue’}, { id: 2, on: false, color: ‘red’ }}
+this.lights = Object.keys(data).map(key => data[key])
 
-// both return // [{ id: 1, on: true, color: ‘blue’}, { id: 2, on: false, color: ‘red’ }]
+// the time is now aka WITH `Object.values()`
+this.lights = Object.values(data)
+
+// both return 
+// [{ id: 1, on: true, color: ‘blue’}, { id: 2, on: false, color: ‘red’ }]
 
 Fancy 💅, right?
 
@@ -118,7 +146,8 @@ Fancy 💅, right?
 
 This method takes what Object.values() does one step further. Looking at an object, a data structure of key-value pairs, each of those pairs is an entry. When you call Object.entries() it is returning an array containing an array for each of those entries.
 
-Object.entries({ name: 'Toshmagosh', age: 12 })// [[ "name", “Toshmagosh” ], [ “age”, 12 ]]
+Object.entries({ name: 'Toshmagosh', age: 12 })
+// [[ "name", “Toshmagosh” ], [ “age”, 12 ]]
 
 It's really quite straight forward, but if you ever want to dive in more, [JavaScript.info](https://javascript.info/keys-values-entries) has a good rundown.
 
@@ -132,7 +161,21 @@ I didn't think I was going to have to say this again but, left pad. Yes, the [le
 
 You are all smart people so you probably can surmise what each of these methods do. So, I'll just show you some examples instead of using my words.
 
-// padStart adds padding until string reaches provided length'puppies'.padStart(22)// "               puppies"// or provide a filler instead of blank spaces'nachos'.padStart(11, 'yum')// "yumyunachos"// padEnd works the same but adds to the end of the string'Carlos Santana'.padEnd(30, '*-^')// "Carlos Santana*-^*-^*-^*-^*-^*"// Emoji trickiness'🍞🥞🥚🌭'.padEnd(8)// "🍞🥞🥚🌭" // no pad? yup, because the length === 8, emoji you so funny
+// padStart adds padding until string reaches provided length
+'puppies'.padStart(22)
+// "               puppies"
+
+// or provide a filler instead of blank spaces
+'nachos'.padStart(11, 'yum')
+// "yumyunachos"
+
+// padEnd works the same but adds to the end of the string
+'Carlos Santana'.padEnd(30, '*-^')
+// "Carlos Santana*-^*-^*-^*-^*-^*"
+
+// Emoji trickiness
+'🍞🥞🥚🌭'.padEnd(8)
+// "🍞🥞🥚🌭" // no pad? yup, because the length === 8, emoji you so funny
 
 To review this, both methods take an integer parameter that is telling them how long the final length of the string, including the padding, should be. If you pass a number shorter or equal to the original length of the string, nothing will change. Bravo, on wasting your time (just kidding 😁). You can also pass a string and padStart/padEnd will repeatedly add each item of that string to the start or end of the original string until the length matches the passed length parameter. As you can see in my example above, since I wanted a length of 11, padStart added ` ‘yum’ then the ‘yu’ and stopped. [Emoji](https://emojipedia.org/faq/) are very important so I wanted to remind you of their tricky string lengths, more information in [this handy blog post](http://blog.jonnew.com/posts/poo-dot-length-equals-two). 
 
@@ -144,11 +187,35 @@ There are more methods in the pipeline: [trimStart/trimEnd](https://github.com/t
 
 This is the plural version of [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) which returns a descriptor of the property that's directly on an object, i.e. not on its prototype chain.
 
-let popcorn = { action: 'pop', butter: true }let popcornAction = Object.getOwnPropertyDescriptor(popcorn, 'action')// popcornAction is {//   value: "pop",//   writable: true,//   enumerable: true,//   writable: true// }
+let popcorn = { action: 'pop', butter: true }
+let popcornAction = Object.getOwnPropertyDescriptor(popcorn, 'action')
+
+// popcornAction is {
+//   value: "pop",
+//   writable: true,
+//   enumerable: true,
+//   writable: true
+// }
 
 So, using the plural version you are able to capture all of an object's non-inherited (or own) property descriptors. Using the delicious example above:
 
-let popcorn = { action: 'pop', butter: true }let popcornProperties = Object.getOwnPropertyDescriptors(popcorn)// popcornProperties is {//   action: {//     value: "pop",//     writable: true,//     enumerable: true,//     writable: true//   },//   butter: {//     value: true,//     writable: true,//     enumerable: true,//     writable: true//   }// }
+let popcorn = { action: 'pop', butter: true }
+let popcornProperties = Object.getOwnPropertyDescriptors(popcorn)
+
+// popcornProperties is {
+//   action: {
+//     value: "pop",
+//     writable: true,
+//     enumerable: true,
+//     writable: true
+//   },
+//   butter: {
+//     value: true,
+//     writable: true,
+//     enumerable: true,
+//     writable: true
+//   }
+// }
 
 Why do we need these methods? Well the proposer, Jordan Harband, puts it well here:
 
@@ -156,7 +223,22 @@ There is not a single method in ECMAScript capable of simplifying a proper copy 
 
 With this addition you can now use getPrototypeOf and getOwnPropertyDescriptors with objectCreate to copy object and easily give it the same prototype and property descriptors. Before, this was most often done using Object.assign, which would grab an object's properties and symbols instead of descriptors. That approach left the risk of discarding possible accessors.
 
-// just to give you a bit of an ideaconst toshmagosh = {  cuteLevel: 11,  breed: 'Blue Pomeranian',  treatTime: treat => {    console.log(`Do you want a ${treat}?`)  }}const newPuppy = Object.create(  Object.getPrototypeOf(toshmagosh),  Object.getOwnPropertyDescriptors(toshmagosh));// newPuppy// {cuteLevel: 11, breed: "Blue Pomeranian", treatTime: ƒ}
+// just to give you a bit of an idea
+const toshmagosh = {
+  cuteLevel: 11,
+  breed: 'Blue Pomeranian',
+  treatTime: treat => {
+    console.log(`Do you want a ${treat}?`)
+  }
+}
+
+const newPuppy = Object.create(
+  Object.getPrototypeOf(toshmagosh),
+  Object.getOwnPropertyDescriptors(toshmagosh)
+);
+
+// newPuppy
+// {cuteLevel: 11, breed: "Blue Pomeranian", treatTime: ƒ}
 
 ### **Appreciation Pause**
 
@@ -168,7 +250,11 @@ Now, there are a lot of great people that are and have been on TC39, I would lik
 
 I must admit, I think trailing commas looks super sloppy and I have never been a big fan.
 
-let why = [  'really?',  'must you?',  'yuck 😝',]
+let why = [
+  'really?',
+  'must you?',
+  'yuck 😝',
+]
 
 ![image alt text](image_6.gif)
 
@@ -330,7 +416,9 @@ TODO: what other aspects?
 
 😛just kidding! Although that really was my note, thank [TJ VanToll](https://twitter.com/tjvantoll) for recognizing the comedic spin. Jokes aside, Yarn got a ton of attention last year because of its Facebook backing and solutions to npm users sore spots like slow installs and errors caused by package version inconsistencies.
 
-In response, npm released version 5, which was packed with fun things. One of the main focuses of this release was increasing their speed, which, of course, prompted amazing blog post titles like, ["npm@5 — Yarn killer?"](https://medium.com/netscape/npm-5-yarn-killer-ba69737b24d0) by Nikhil John. With this update npm is noticeable faster.[https://twitter.com/maybekatz/status/855362606713851904](https://twitter.com/maybekatz/status/855362606713851904)
+In response, npm released version 5, which was packed with fun things. One of the main focuses of this release was increasing their speed, which, of course, prompted amazing blog post titles like, ["npm@5 — Yarn killer?"](https://medium.com/netscape/npm-5-yarn-killer-ba69737b24d0) by Nikhil John. With this update npm is noticeable faster.
+
+[https://twitter.com/maybekatz/status/855362606713851904](https://twitter.com/maybekatz/status/855362606713851904)
 
 This update also included a Package.lock file which has the same benefits of the yarn.lock file, keeping your package versions consistent, and removed npm-shrinkwrap. They brought on a --save default to any package you install, which saves you those, oh-so-important keystrokes 😉. One of my favorite additions is npm’s [npx package runner](http://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner). One nifty thing that npx allows you to do is use packages on a per-project basis instead of having to save packages to your machine globally. There is much more to it though, check out the awesome Kat Marchán’s [post](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to learn more. There are also more features im general on version 5, you can check out their [blog](http://blog.npmjs.org/post/161081169345/v500) for more information.
 
