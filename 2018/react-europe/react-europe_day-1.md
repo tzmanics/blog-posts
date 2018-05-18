@@ -8,20 +8,22 @@ For your viewing pleasure I present you with a quick recap of Day 1 at React Eur
 ## Keynote - State of React: Ken Wheeler
 To kick things off we had [Ken Wheeler](https://twitter.com/ken_wheeler)'s version of State of React aka The New Hotness in React. First he talked about the goings on with the start of React 16: Fiber was announced but what of it. Then he got into some of the new stuff with React 16.3 like new Life Cycles with async architecture that bring you more code safety. Next he walked us through Context which is Ken's "favorite feature in the whole entire world" and now it's fully supported. To showcase Context, Ken carbo-loaded us with a lovely demo.
 
-![Meriva bread demo](images/bread-demo.gif)
+![Merica bread demo](images/bread-demo.gif)
 
 Next he talked about Suspense, which we've been super excited about but have been waiting for in suspense 🥁. Ken reminded us that a couple days ago Andrew committed changes to master. So, it may be available in a few days. Such excite! He ran us through a very American demo plus a great one with the pics of his contributors called, "People I've Let Down" 😂.
 
 ## The Case for Whimsy: Joshua Comeau
 First [Josh](https://twitter.com/JoshWComeau) we looked back at some fun 90's sites. Remember Ask Jeeves? I do, Joshua! The McDonald's 90's website had a little animation of a guy ducking out of the way after shining the arches. Josh hasn't yet "made a way to create cat gifs with React" but that may be his talk for next year. It's on record now, so it has to come true! He showed us a sandbox he makes when he builds out animation projects like the confetti he built for Kahn Academy.
 
-![pretty confetti demo](images/coneftti-demo.gif)
+![pretty confetti demo](images/confetti-demo.gif)
 
 Then he walked us through how he builds this canvas test atmosphere in React. After such confetti fun, Josh showed us how he made email more whimsical with etch-a-sketch-esque deleting email content and sending an email by having it fold-up like a letter 😍. He then showed us more animations and walked us through action-driven animation and state-driven animation. It was great to see such awesome UX that you could build with React and, as Joshua hilariously called it, your grandma's CSS.
 
 Josh had a great point towards accessibility at the end,
 
 >"If nothing else, we should make sure that our whimsical touches aren't harmful for folks with vestibular disorders."
+
+![accessibility is more important](images/but.gif)
 
 He reminded us about `prefers-reduced-motion`, it isn't supported everywhere but Khan Academy has a setting you can set in the meantime!
 
@@ -51,7 +53,7 @@ Little did we know but besides being an open source developer at Apollo, [Peggy]
 
 In Apollo's future we discuss Suspense! Most importantly, Peggy's demo retrieved random pictures of 😍🐶DOGS😍🐶! An aptly named pausing demo (get it 'paws'ing). Next she had another demo showing off the Apollo cache in which she searched different dog breeds to show beautiful, lovely, adorable dogs. She interrupted her own search request with another request to show synchronous loading with interruptions by delaying rendering based on prioritization.
 
-![puppy visualization](images/puppy-viz.png)
+![puppy visualization](images/puppy-viz.jpg)
 
 I had to add this last image because who doesn't love a puppy visualization?!
 
