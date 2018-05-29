@@ -80,7 +80,7 @@ Looking into augmented reality in Expo, Evan talked about what is available and 
 ## SVGR or How a Simple Problem Became a 2k Stars Library: Greg Berge
 After introducing himself and his projects [Greg](https://twitter.com/neoziro) jumped into the problem his open source library hoped to tackle. He wanted his icons from sketch inside his React project, put simply, SVG to React. Instead of acting like a robot converting all his icons, he made a transformer.
 
-![Greg's talk on SVGR](https://www.youtube.com/watch?v=s2jqirmPYck?t=2h25m22s)
+[Here's the link to Greg's talk on SVGR.](https://www.youtube.com/watch?v=s2jqirmPYck?t=2h25m22s)
 
 Greg explained all the challenges that he ran into and how he went about solving them. Once he solved each problem he ran into he added features like Prettier, SVGO and H2X built-in plugins. Greg then showed us a demo of [SVGR](https://github.com/smooth-code/svgr), a discussion of how he marketed his project 🦁, and his "sexy" README. To finish his talk he announced that SVGR will be a part of the next release of `create-react-app`.
 
