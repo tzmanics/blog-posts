@@ -7,16 +7,16 @@ With the newest minor release of React, 16.4, plus a subsequent patch, 16.4.1, w
 ##  Pointer Events
 
 Probably the shiniest of the shiny for the 16.4.0 release was the support for Pointer Events. This was a feature that people requested often to be able to be aware of the following events:
-`onPointerDown`
-`onPointerMove`
-`onPointerUp`
-`onPointerCancel`
-`onGotPointerCapture`
-`onLostPointerCapture`
-`onPointerEnter`
-`onPointerLeave`
-`onPointerOver`
-`onPointerOut`
+- `onPointerDown`
+- `onPointerMove`
+- `onPointerUp`
+- `onPointerCancel`
+- `onGotPointerCapture`
+- `onLostPointerCapture`
+- `onPointerEnter`
+- `onPointerLeave`
+- `onPointerOver`
+- `onPointerOut`
 
 For a long time we’ve had access to mouse events to help us understand how a user was interacting with the application. Now users are interacting with more than a mouse, instead using touch or a stylus, for example. Pointer Events inherit mouse events so we can still take in that information while expanding to different forms of input interaction.
 
@@ -51,7 +51,7 @@ class Example extends React.Component {
   }
 }
 ```
-This new lifecycle should handle everything that we once used `componentWillReceiveProps` for when used with `componentDidUpdate. `getDerivedStateFromProps` is invoked after a component is instantiated and also when it receives new props. Straight from an [article](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) by [Brian Vaughn](https://github.com/bvaughn), 
+This new lifecycle should handle everything that we once used `componentWillReceiveProps` for when used with `componentDidUpdate`. `getDerivedStateFromProps` is invoked after a component is instantiated and also when it receives new props. Straight from an [article](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) by [Brian Vaughn](https://github.com/bvaughn), 
 
 >”It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.”
 
@@ -61,28 +61,28 @@ The release of 16.4 included a bugfix for `getDerivedStateFromProps` that made s
 There were lots of fixes in these last two recent minor and patch release. Here is a list of the combined list for your viewing pleasure:
 
 ### React DOM
-Fix a crash when the input `type` changes from some other types to text.
-Fix a crash in IE11 when restoring focus to an SVG element.
-Fix a range input not updating in some cases.
-Fix input validation triggering unnecessarily in Firefox.
-Fix an incorrect `event.target` value for the onChange event in IE9.
-Fix a false positive error when returning an empty `<React.Fragment />` from a component.
-Fix a false positive warning when using `react-lifecycles-compat` in `<StrictMode>`.
-Fix a bug that prevented context propagation in some cases.
-Fix re-rendering of components using `forwardRef()` on a deeper `setState()`.
-Fix some attributes incorrectly getting removed from custom element nodes.
-Fix context providers to not bail out on children if there's a legacy context provider above.
+- Fix a crash when the input `type` changes from some other types to text.
+- Fix a crash in IE11 when restoring focus to an SVG element.
+- Fix a range input not updating in some cases.
+- Fix input validation triggering unnecessarily in Firefox.
+- Fix an incorrect `event.target` value for the onChange event in IE9.
+- Fix a false positive error when returning an empty `<React.Fragment />` from a component.
+- Fix a false positive warning when using `react-lifecycles-compat` in `<StrictMode>`.
+- Fix a bug that prevented context propagation in some cases.
+- Fix re-rendering of components using `forwardRef()` on a deeper `setState()`.
+- Fix some attributes incorrectly getting removed from custom element nodes.
+- Fix context providers to not bail out on children if there's a legacy context provider above.
 
 ### React DOM Server
-Fix an incorrect value being provided by new context API.
+- Fix an incorrect value being provided by new context API.
 
 ### React Test Render
-Fix `getDerivedStateFromProps()` in the shallow renderer to not discard the pending state. 
-Fix the `getDerivedStateFromProps()` support to match the new React DOM behavior.
-Fix a `testInstance.parent` crash when the parent is a fragment or another special node.
+- Fix `getDerivedStateFromProps()` in the shallow renderer to not discard the pending state. 
+- Fix the `getDerivedStateFromProps()` support to match the new React DOM behavior.
+- Fix a `testInstance.parent` crash when the parent is a fragment or another special node.
 
 ### React ART
-Fix reading context provided from the tree managed by React DOM.
+- Fix reading context provided from the tree managed by React DOM.
 
 To learn more about each of these fixes you can check out their authors and github issues all listed on the [React Releases github page](https://github.com/facebook/react/releases).
 
