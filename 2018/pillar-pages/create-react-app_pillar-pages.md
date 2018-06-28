@@ -1,6 +1,6 @@
 # Quick React Apps with `create-react-app`
 
-The [`c/enreate-react-app`](https://github.com/facebook/create-react-app) is a library from the Facebook team that helps you build up React applications with no build configurations. There is definitely a lot you can learn from building your React apps from the ground up but once you feel comfortable `create-react-app` takes care of the tedious work for you. Not to discourage beginners from using this scaffolding tool, just know there is a lot going on under the hood. You can learn a lot from breaking a project built with `create-react-app` too ;). Okay, let's dig in.
+The [`create-react-app`](https://github.com/facebook/create-react-app) is a library from the Facebook team that helps you build up React applications with no build configurations. There is definitely a lot you can learn from building your React apps from the ground up but once you feel comfortable `create-react-app` takes care of the tedious work for you. Not to discourage beginners from using this scaffolding tool, just know there is a lot going on under the hood. You can learn a lot from breaking a project built with `create-react-app` too ;). Okay, let's dig in.
 
 ## Building a Project 
 To start with a fresh project is as simple as running three lines of code in your terminal. Then you're all set with a simple React app.
