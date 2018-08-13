@@ -1,4 +1,4 @@
-# What Can Kendo UI Do For You
+# What Else Can You Do with Kendo UI React: Grids, Uploads and More
 
 Hi! I'm Tara Manicsic, [tzmanics](https://twitter.com/Tzmanics) on Twitter and [GitHub](https://github.com/tzmanics). I am a developer advocate for [Progress](https://www.progress.com/) here to help guide you through the wonderful world of [Kendo UI built for React](https://www.telerik.com/kendo-react-ui). This is, sadly, the last post in this series connected to [this video series](https://www.youtube.com/playlist?list=PLLGlTD7u3kMo1TKLmFShXMhP-fIculjOu). If this is the first post that you're seeing, you have gone backwards. You can continue to go backwards, but it will be very confusing and you will be undoing a lot of code. But, I am not here to judge. To each their own. If you would like to go in the correct order, all the post are listed below along with some resources including the [repo](https://github.com/tzmanics/kendoui-react-video-series) that we made for the project that we built using [Kendo UI React components](https://www.telerik.com/kendo-react-ui/components).
 
