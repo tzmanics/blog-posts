@@ -4,7 +4,7 @@ This is a quick post to help you get up and running with a new Node project conn
 ## Creating a Node Project
 I make a lot of Node projects, some even see the light of day 😛 so I have a script to spin one up. I got the idea from [this tweet](https://twitter.com/bitandbang/status/1082331715471925250) from [Tierney Cyren](https://twitter.com/bitandbang/) and learned even more from [this post](https://philna.sh/blog/2019/01/10/how-to-start-a-node-js-project/) by [Phil Nash](https://twitter.com/philnash).
 
-![picture of Tierney's tweet](tearkneesiren.png)
+![picture of Tierney's tweet](https://bit.ly/2OPHMjC)
 
 As the tweet says, in your terminal you can just type:
 
@@ -36,13 +36,9 @@ function node-project {
   git commit -m 'initial commit'
 }
 ```
-> 🐙 you can check out [this project's repo](https://bit.ly/2I1AFnO) to see what we have so far.
 
 ## Connecting to Kinvey
-Now that we have our base project we get to connect it to our Kinvey backend. First things first, we'll want to install the [Kinvey SDK](https://github.com/Kinvey/js-sdk), which is open source :).
-
-```npm i kinvey-node-sdk```
-_As long as you're using an updated version of npm you do not need to use the --save/-s flag to save the module as a dependency, it does it automatically._
+Now that we have out base project we get to connect it to our Kinvey backend.
 
 ## Next Steps
 We're all set up! Pretty easy, right? What will we do next, such possibilities. Here are some great resources to help you on your coding journey:
