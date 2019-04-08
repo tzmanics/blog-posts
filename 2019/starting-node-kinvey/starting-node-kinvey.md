@@ -4,7 +4,7 @@ This is a quick post to help you get up and running with a new Node project conn
 ## Creating a Node Project
 I make a lot of Node projects, some even see the light of day 😛 so I have a script to spin one up. I got the idea from [this tweet](https://twitter.com/bitandbang/status/1082331715471925250) from [Tierney Cyren](https://twitter.com/bitandbang/) and learned even more from [this post](https://philna.sh/blog/2019/01/10/how-to-start-a-node-js-project/) by [Phil Nash](https://twitter.com/philnash).
 
-![picture of Tierney's tweet](https://bit.ly/2OPHMjC)
+![picture of Tierney's tweet](tearkneesiren.png)
 
 As the tweet says, in your terminal you can just type:
 
@@ -36,10 +36,99 @@ function node-project {
   git commit -m 'initial commit'
 }
 ```
+> 🐙 you can check out [this project's repo](https://bit.ly/2I1AFnO) to see what we have so far.
 
 ## Connecting to Kinvey
-Now that we have out base project we get to connect it to our Kinvey backend.
+Now that we have our base project we get to connect it to our Kinvey backend. First things first, we'll want to install the [Kinvey SDK](https://github.com/Kinvey/js-sdk), which is open source :).
+
+```npm i kinvey-node-sdk```
+
+_As long as you're using an updated version of npm you do not need to use the --save/-s flag to save the module as a dependency, it does it automatically._
+
+Once we have that installed we just need to include the SDK in our project and initiate Kinvey with our project's key and secret. When you create a project with the Kinvey guide it will show you your information in one of the pop-up windows.
+
+![project info from the Kinvey guide](guide.png)
+
+Otherwise, you can always find the project's App Key and App Secret in the top right corner of project's homepage in the console when you click the 3 dots next to the project's name.
+
+![project key and secret location](kinvey_appkey.gif)
+
+We're going to initiate Kinvey in our projects main file: `app.js`,
+
+```js
+// app.js
+
+const Kinvey = require('kinvey-node-sdk')
+
+Kinvey.init({
+  appKey: 'kid_S16j3xVFN',
+  appSecret: 'e0a009c5a6f84949a8310e8c24ff2b7f'
+);
+```
+
+That's all there is to connecting to Kinvey. You can also add a few lines of code to test out your connection. Just add this under your `Kinvey.init`:
+
+```js
+Kinvey.ping().then((response) => {
+  console.log(`Kinvey Ping Success! Response: ${response.kinvey}`);
+  }).catch((error) => {
+    console.log(`Kinvey Ping Failed. Resonse: ${error.description}`);
+  });
+```
+
+If you get `Kinvey Ping Success! Response: hello <your project name>` you're golden. If not, you can check out some [documentation here](https://devcenter.kinvey.com/nodejs/guides/getting-started) to help you troubleshoot.
+
+[🐙 Here's](https://github.com/tzmanics/node-kinvey-base-project/commit/956eb024751eaad432183fc2a03096b864b85168) the commit that has all the changes we've made so far.
+
+### Optional Fun 🤓
+
+Ideally you don't want any of your keys and secrets online so I always put them in a config file. Then I add that file to my `.gitignore` list so it never gets pushed up.
+
+```js
+// config.js
+
+const config ={
+  kinvey: {
+    appKey: 'kid_S16j3xVFN',
+    appSecret: 'e0a009c5a6f84949a8310e8c24ff2b7f'
+  }
+}
+
+module.exports = config;
+```
+
+With that we only need to pass that `config` object to the `Kinvey.init` function in out `app.js` file.
+
+```js
+// app.js
+
+const Kinvey = require('kinvey-node-sdk');
+const config = require('./config');
+
+Kinvey.init(config.kinvey);
+```
+
+Such concise! Remember it's important to add the `config.js` file to your `.gitignore` if you're using version control. But of course you are!
+
+*`.gitignore`*
+```
+...
+# config stuff
+config.js
+
+```
+
+To make sure your config file is being ignored. Run `git status` and make sure it's not listed before pushing your code up.
+
+[🐙 Here](https://github.com/tzmanics/node-kinvey-base-project/commit/503a016c215dd8e41fef7ae8756d0b50aef0ac92) is the commit that shows the changes plus has an example config file.
 
 ## Next Steps
 We're all set up! Pretty easy, right? What will we do next, such possibilities. Here are some great resources to help you on your coding journey:
 
+- The [official documentation for starting a project](https://devcenter.kinvey.com/nodejs/guides/getting-started) has more configuration settings and information on connecting to Kinvey.
+- Our [Node.js Users Guide](https://devcenter.kinvey.com/nodejs/guides/users) will help you start adding managing your users.
+- [Tutorials](https://devcenter.kinvey.com/nodejs/tutorials) can help you add business logic and collection hooks to your application.
+- Check out [this blog post from Brian Rinaldi](https://www.progress.com/blogs/getting-started-with-kinvey-flexservices) on getting started with Kinvey FlexServices.
+- You can also join one of our [Getting Started Webinars](https://www.progress.com/campaigns/kinvey/getting-started-with-kinvey) to learn more and ask us questions.
+
+Whichever direction you go next, remember you can always reach out to us on Twitter at [@Kinvey](https://twitter.com/Kinvey)! Happy coding 👩🏻‍💻!
