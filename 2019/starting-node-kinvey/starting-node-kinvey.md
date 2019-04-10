@@ -127,6 +127,7 @@ We're all set up! Pretty easy, right? What will we do next, such possibilities. 
 
 - The [official documentation for starting a project](https://devcenter.kinvey.com/nodejs/guides/getting-started) has more configuration settings and information on connecting to Kinvey.
 - Our [Node.js Users Guide](https://devcenter.kinvey.com/nodejs/guides/users) will help you start adding and managing your users.
+- Want to know some of the great reasons Kinvey and Node work so well together? Check out my last article: [Kinvey for Node Developers](https://www.progress.com/blogs/kinvey-for-node-developers).
 - [Tutorials](https://devcenter.kinvey.com/nodejs/tutorials) can help you add business logic and collection hooks to your application.
 - Check out [this blog post from Brian Rinaldi](https://www.progress.com/blogs/getting-started-with-kinvey-flexservices) on getting started with Kinvey FlexServices.
 - You can also join one of our [Getting Started Webinars](https://www.progress.com/campaigns/kinvey/getting-started-with-kinvey) to learn more and ask us questions.
