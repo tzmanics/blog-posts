@@ -4,44 +4,40 @@ Although you may see more articles on micrapps popping up recently, the term and
 
 *A microapp is an app that is highly focused on performing just one task.*
 
-In software engineering terms, this is akin to [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) which states that, "a class should have one and only one reason to change." In other words, it only has one job and it, hopefully, does it well. Instead of having an app that has every task an employee _can_ do (e.g. report time off, submit expenses, choose benefits, search employee directory, upload shared resources, etc.) there are microapps that handle each of those tasks specifically.
+In software engineering terms, this is akin to the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle) which states that, "a class should have one and only one reason to change." In other words, it only has one job and it, hopefully, does it well. Instead of having an app that has every task an employee _can_ do (e.g. report time off, submit expenses, choose benefits, search employee directory, upload shared resources, etc.) there are microapps that handle each of those tasks specifically.
 
-As consumers, we've been using microapps for a while: the flight search box in Google, calendar alerts on desktop, WeCha, and so many more.
+As consumers, we've been using microapps for a while: the flight search box in Google, calendar alerts on desktop, WeChat, and so many more.
 
 ![google flight microapp](flight-app.gif)
 
-Yet, you may not know too much about what they are, I'm just learning about them this year. To save you some time, here are the 4 top things I've learned about microapps:
+Yet, you may not know too much about what they are. Personally, I'm just learning about them this year. To save you some time, here are the 4 top things I've learned about microapps:
 
 - They reduce complexity for developers and users.
 - Microapps are not the same as microservices but the benefits are.
 - With microapps, more is less but more is also more. (So deep, I know.)
 - Creating a microapp is fast and easy.
 
-If that's enough info for you, awesome 👍. If not, let me dig in a little deeper to each point.
+If that's enough info for you, awesome 👍. If not, let me tell you a little more about each point.
 
 ## Reducing Complexity for Developers and Users
-Microapps help you breakdown your apps into consumable pieces for both the developers and the users.
-- customizing applications to what users need to do
-- not having to worry about the chain of permissions/auths as users navigatr thru an app.
-- most users don't use all of the applications but have to learn to navigate to the parts they need, etc.
--  more focused and targetted "highly focused, task-based functionality" get in and interact with a low-barrier
-- simple, without a lot of features making them easier to use and therefore more appealing to the people using them
-- employe engagement and productivity increases when it's easy to carry out the task at hand
-- make it so employees can easily carry out a task, remove steps they may take out of confusion (emailing someone for help with reimbursements, pinging the support team to submit a customer complaint) remove the "middleman"
-- developers don't have to worry about using different frameworks
+Microapps help you breakdown your large, cluttered apps into smaller, consumable apps which benefits both the developers and the users. This strategy lets developers add a lot customization of the UI and navigation to better suit the _one task_ that a user needs to accomplish. Then the user has a better experience because of the tailored design. Users are more likely to interact with an application if it has a low-barrier entry. I hate the cognitive energy that's used just to _get_ to the application I need to carry out a task. Many of your users may not even be using the numerous applications in your suite and have to take the time to navigate to the one or two applications they actually need. A one-stop shop may have everything you need, but what section are the batteries in? How far back to you have to go to find them? I would rather just go to the battery drive-thru. As far as I know this doesn't exist, but I wouldn't be mad if it did. All this to say, make it easy for users to get a task done and they'll do it more. They may even enjoy it too!
+
+Another pain point for developers and users is authentication. For a developer, having to keep track of the chain of permissions for users throughout a complicated app can be truly mind-boggling. Of course a team can have a reference that says which users have what access on which part of the app at what time. As complicated as that is, what about when you have to change a users permission on the fly? For instance, when an employee leaves a position at a theme park and should no longer be able to order free guest passes. Not that anyone would take advantage of that (if you know someone who is in this position, my email is tmanicsi@progress.com and I LOVE theme parks!). With a microapp you only need to worry about authentication and permissions for the _one_ task that's being accomplished. For a user, this may mean that they only have to give credentials upon opening the app.
+
+When users don't have a clear path to completing a goal, they tend to make more work for more people. Complexity can lead to confusion. For instance, I was trying to find a list of an employees for a team in a company. The directory was a part an app that had a lot going on and navigating to the directory took some time, then it was even more confusing once I was in the directory. So, instead, I sent a message to a team manager on Slack, who then sent an email to an HR person, who found the info then sent it back down the chain. After all that, I didn't even end up using the information. Real nice, Tara. All this because I couldn't easily accomplish the task using their application. There are many cases like this though: sending and email to the support team because a user can't submit a ticket through the app, calling a support center because you can't find something on a company's app, etc. The more straightforwrd and simple you can make an app the less likely you are to run into these time sucks.
 
 ## Microapps vs. Microservices
-- you can concentrate on the specific UI for a certain user, doing a function
-- application maintenance is much easier when there are fewer moving parts
-- technical debt has a tendency to pile up when you're staring at a massive monolithic app, it's more consumable when the project is broken down?
-- updating or killing a project isn't as big of an undertaking
+Microservice architecture is a strategy of breaking up an application into services that are lightweight and loosely coupled. This is pretty synonymous with microapps, the main difference being scale and size. Microservices reference services used from frontend to backend, usually using an APIs and/or message-broker software to communicate between all the services. Microapps are smaller scale, usually just focusing on the UI layer. With both of these techniques, though, you are pairing down large, complex structures into more focused, more easily managed pieces.
+
+Just like machines and kindergarten plays, the less moving parts, the easier it is to manage. So, with both microapps and microservices you have application that have less moving parts; your app is only handling one task. Instead of worrying about breaking the billing part of your application when you go to change the data visualizations, you can have each as their own app and only break one (preferably you break none 😉). This also makes the transition to newer coding strategies or technologies easier. Instead of having to update a huge project all at once, you can just update it piece by piece. If a part of you application needs to be deprecated you don't have to fish through a large application to find everything that may break by removing it. Since it's loosely coupled, you can see where applications are accessing it and make a clean cut.
 
 ## Less is More && More is More
-- you can have the base application and the parts that you re-use and put together in different configurataions that work for a certain application. That way you're not constantly re-writing the same applications. This keeps things consitent
-- shorter development time means you can make more apps that are more specific to a users needs
+There is good and bad to this strategy. Less is more because you can re-use the pieces of microapps to form different applications. You don't have to re-write the same pieces of a UI, instead you are just configuring the parts you already have. With this strategy you are also giving your users a consistency across many apps so they have familiar UIs and are then easier, more intuitive to use. The flip side to that coin, is that you now have more applications. This is when more is, well, more. If you take apart an application that has 5 tasks, you now have 5 apps. The saving grace here, is the likelihood that creating and maintaining those 5 individual apps is easier than creating and maintaining the one complex app thanks to the [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) of microapps. It's not likely that you will hear a engineering manager say, "Stop, we have too many working apps that help our users complete their tasks!" In the end, it will come down to user satisfaction and ease of maintenance for the developers.
 
 ## Fast & Easy to Create
-- be more proficient, impactful and intentional with your development time, more is needed but the resources aren't there
-- when the development process is simplified more people are able to take on the task of building out microapps
-- changes are easy to deploy because they are delivered as instant updates through the microapp container
+With the microapp structure developers will be able to re-use parts of microapps to create other apps, Development time will be faster. Developers and engineering hours are usually one of the scarcest resources on a team. Microapp creation lets developers be more impactful and proficient with the time they have. Having a simplified development process gives you time to create the features and changes that users are requesting from your apps. The time spent on debating which framework to use can now be used more productively 😂. Since creating a microapp is less technical than coding out an application from scratch more people will be able to help develop apps. 
+
+Making changes to your apps is also fast because the container knows to check-in when a user is engaging with the app, to see if anything has been changed. Mobile apps are especially hard to update when you have to go through a submission to an app store. Not only are you cutting the time it takes to make the update but you also don't have the wait time for changes to be accepted. Time is precious when it comes to getting users what they need and retaining the users you have.
+
+## Are Microapps for You?
 
