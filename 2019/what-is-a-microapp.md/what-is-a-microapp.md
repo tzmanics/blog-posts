@@ -14,10 +14,10 @@ Yet, you may not know much about what they are. To save you some time, here are 
 
 - They reduce complexity for developers and users.
 - Microapps are not the same as microservices but the benefits are.
-- With microapps, more is less but more is also more. (So deep, I know)
+- With microapps, more is less but more is also more (SO deep, I know).
 - Creating a microapp is fast and easy.
 
-If that's enough info for you, awesome 👍. If not, let me tell you a little more about each of these points.
+If that's enough info for you, awesome 👍 you can make some [here](https://www.progress.com/labs/microapps). If not, let me tell you a little more about each of these points. If you're not a fan of reading, you can also just listen in on this webinar: [What are Microapps–and Why You Should be Using Them](https://www.progress.com/campaigns/kinvey/webinar-5ways-microapps).
 
 ## Reducing Complexity for Developers and Users
 Microapps help you breakdown your large, cluttered apps into smaller, consumable apps which benefits both the developers and the users. This strategy lets developers customize the UI and navigation to better suit the _one task_ that a user needs to accomplish. Users are more likely to interact with an application if it is easier and more enjoyable to use. I hate the cognitive energy that's used just to _get_ to the application I need to carry out a task.
@@ -27,6 +27,7 @@ Many of your users may not even be using the numerous features in your app but h
 Another pain point for developers and users is authentication. For a developer, having to keep track of the chain of permissions for users throughout a complicated app can be truly mind-boggling. Of course a team can have a reference that says which users have what access on which part of the app at what time. As complicated as that is, what about when you have to change a users permission on the fly? For instance, when an employee leaves a position at a theme park and should no longer be able to order free guest passes. Not that anyone would take advantage of that (if you know someone who is in this position, my email is tmanicsi@progress.com and I LOVE theme parks!). With a microapp you only need to worry about authentication and permissions for the _one_ task that's being accomplished. For a user, this may mean that they only have to give credentials upon opening the app.
 
 ![eloha app](eloha-app.png)
+*from [Eloha](https://eloha.io/) microapps platform*
 
 When users don't have a clear path to completing a goal, they tend to make more work for more people. Complexity can lead to confusion. For instance, I was trying to find a list of an employees for a team in a company. The directory was a part of an app that had a lot going on and navigating to the directory took some time. Then it was even more confusing once I was in the directory. So, instead, I sent a message to a team manager on Slack, who then sent an email to an HR person, who found the info then sent it back down the chain. After all that, I didn't even end up using the information 🤭. All this because I couldn't easily accomplish the task using their application. There are many cases like this though: sending an email to the support team because a user can't submit a ticket through the app, calling a support center because you can't find something on a company's app, etc. The more straightforwrd and simple you can make an app the less likely you are to run into these time sucks.
 
