@@ -27,7 +27,6 @@ Many of your users may not even be using the numerous features in your app but h
 Another pain point for developers and users is authentication. For a developer, having to keep track of the chain of permissions for users throughout a complicated app can be truly mind-boggling. Of course a team can have a reference that says which users have what access on which part of the app at what time. As complicated as that is, what about when you have to change a users permission on the fly? For instance, when an employee leaves a position at a theme park and should no longer be able to order free guest passes. Not that anyone would take advantage of that (if you know someone who is in this position, my email is tmanicsi@progress.com and I LOVE theme parks!). With a microapp you only need to worry about authentication and permissions for the _one_ task that's being accomplished. For a user, this may mean that they only have to give credentials upon opening the app.
 
 ![eloha app](eloha-app.png)
-*from [Eloha](https://eloha.io/) microapps platform*
 
 When users don't have a clear path to completing a goal, they tend to make more work for more people. Complexity can lead to confusion. For instance, I was trying to find a list of an employees for a team in a company. The directory was a part of an app that had a lot going on and navigating to the directory took some time. Then it was even more confusing once I was in the directory. So, instead, I sent a message to a team manager on Slack, who then sent an email to an HR person, who found the info then sent it back down the chain. After all that, I didn't even end up using the information 🤭. All this because I couldn't easily accomplish the task using their application. There are many cases like this though: sending an email to the support team because a user can't submit a ticket through the app, calling a support center because you can't find something on a company's app, etc. The more straightforwrd and simple you can make an app the less likely you are to run into these time sucks.
 
@@ -55,8 +54,8 @@ Making changes to your apps is also fast because the container knows to check-in
 ## Are Microapps for You?
 Maybe microapps are just what you were looking for. If so, great. If you still have questions, well, that's great too. Either way, here are some resources to help you on you microapp journey:
 
-- Check out [eloha](https://eloha.io/) to learn more about microapps and/or get started.
-- [Reach out](https://www.progress.com/labs/microapps) to someone from my team to ask specific questions.
+- Check out [Kinvey Microapps](https://www.progress.com/kinvey/micro-apps) to learn more about microapps and/or get started.
+- [Reach out](https://www.progress.com/kinvey/contact) to someone from my team to ask specific questions.
 - Read [this article](https://www.progress.com/blogs/simplify-organization-app-sprawl-enterprise-micro-application-architecture) about Enterprise Micro-Application Architecture.
 - Come to [Progress Next](https://www.progress.com/next/sessions/building-an-enterprise-mobile-portal-in-under-30-minutes-with-microapps) to learn how to make a Enterprise Mobile Portal in 30 minutes with microapps!
 
