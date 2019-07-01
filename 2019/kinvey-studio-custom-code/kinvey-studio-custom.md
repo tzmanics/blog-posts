@@ -192,7 +192,7 @@ With that last bit we have our app just how we want it. The pre-made views and c
 I hope that you're so inspired and are filled with 80 million ideas of what you want to create. Here are some other resources to help you on your coding way:
 
 - [Install Kinvey Studio](https://studio.kinvey.com/)
-= [An Introduction to Kinvey Studio](https://studio.kinvey.com/)
+- [An Introduction to Kinvey Studio](https://studio.kinvey.com/)
 - Tired of reading? [Here's a quick video introduction.](https://www.youtube.com/watch?v=QZbcskYIEmI)
 
 I can't wait to see what you create. Happy Coding!
