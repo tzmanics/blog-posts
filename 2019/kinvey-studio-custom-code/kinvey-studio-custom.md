@@ -16,7 +16,7 @@ When you create an app with Kinvey Studio a login page is pre-built for you, for
 
 As a default the login page will source your users from your Kinvey backend. On that login page there will also be an option for users to register. When a user registers they are automatically added to the user list in your Kinvey backend. Want other login methods? You can easily add other login options with Kinvey's [Mobile Identity Connect](https://devcenter.kinvey.com/rest/guides/mobile-identity-connect) service.
 
-![logging in and registering](login-register.mov)
+![logging in and registering](login-register.gif)
 
 ### Master List Page
 
@@ -26,7 +26,7 @@ Now that we can get users in, let's give them something to look at. We'll start 
 
 This is what that list looks like on my phone (an iPhone SE (it's the smallest phone that still pairs with the newest Apple Watch (I have small hands))). Just a reminder, you can also run this on an android device.
 
-![a preview of the list](list-preview.mov)
+![a preview of the list](list-preview.gif)
 
 ### New Job Form
 
@@ -36,7 +36,7 @@ What's a list if the user can't add more? Kinvey Studio makes this really easy: 
 
 After we've got the form just how we want it, we can go back to the original view and add a button to click for a new job. We assign that button's action to open up the form we just created. Easy as pie ([here](https://knowyourphrase.com/easy-as-pie) is this idiom's origin story, if you were curious like me).
 
-![form preiview](form-demo.mov)
+![form preiview](form-demo.gif)
 
 ### Details Page
 
@@ -46,7 +46,7 @@ We want the user to be able to see the detail of that job when they click it, so
 
 We can even add a form that is also mapped to our collection to update information for the particular job we are viewing.
 
-![demo of the detail page](detail-demo.mov)
+![demo of the detail page](detail-demo.gif)
 
 ## Adding Custom Detail Page
 
@@ -104,7 +104,7 @@ Moving over to the template/`html` file, we first want to make sure the page scr
 </ng-container>
 ```
 
-![they see me scrollin](scrollin.mov)
+![they see me scrollin](scrollin.gif)
 
 #### Making `status` Stand Out
 
@@ -139,7 +139,7 @@ Of course we also need to add these corresponding styles for these classes. We c
 
 Now we've got a way to make the status stand out so that the contractor and their crew quickly know what needs work.
 
-![a look at the color changes](colored-status.mov)
+![a look at the color changes](colored-status.gif)
 
 #### Removing Superfluous Images
 
@@ -163,7 +163,7 @@ It is great to see how the stored picture is pulled in but we just need the one 
 ```
 Now when we scroll we see no image listed but when a user wants to update an image they can see a preview of the image they've chosen.
 
-![a demo of the photo feature](photo-demo.mov)
+![a demo of the photo feature](photo-demo.gif)
 
 #### Livin' That Pipe Dream
 
@@ -192,7 +192,7 @@ With that last bit we have our app just how we want it. The pre-made views and c
 I hope that you're so inspired and are filled with 80 million ideas of what you want to create. Here are some other resources to help you on your coding way:
 
 - [Install Kinvey Studio](https://studio.kinvey.com/)
-- [An Introduction to Kinvey Studio](https://studio.kinvey.com/)
+- [An Introduction to Kinvey Studio](https://devcenter.kinvey.com/nativescript/guides/studio-introduction)
 - Tired of reading? [Here's a quick video introduction.](https://www.youtube.com/watch?v=QZbcskYIEmI)
 
 I can't wait to see what you create. Happy Coding!
