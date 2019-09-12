@@ -10,7 +10,7 @@ To add the the builder we first want to add it to our Angular project with the h
 
 `ng add @netlify-builder/deploy`
 
-Running this command will walk us through setting up the builder. It first asks for the project API ID or Site ID of your Netlify project. We can find this by going to the project page clicking 'Settings' in the top menu, then 'Site Settings' under the 'General' menu tab (https://app.netlify.com/sites/`<your site name>`/settings/general#site-details) 
+Running this command will walk us through setting up the builder. It first asks for the project API ID or Site ID of your Netlify project. We can find this by going to the project page clicking 'Settings' in the top menu, then 'Site Settings' under the 'General' menu tab (https://app.netlify.com/sites/\<your site name\>/settings/general#site-details) 
 
 ![screenshot of where to find the API ID](images/app-id.png)
 
