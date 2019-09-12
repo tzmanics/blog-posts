@@ -1,6 +1,6 @@
 # Using the Netlify Builder
 
-I was super stoked to try out the [Netlify Builder](https://github.com/ngx-builders/netlify-builder) built for the Angular CLI by [Santosh Yadav](https://www.santoshyadav.dev). It's _super_ easy to use. One thing I was hesitant 😬 about was putting my personal access token in the public `angular.json` file. So, instead I made a script to deploy any project passing in my token as an environment variable. Come code with me 🤗.
+I was stoked to try out the [Netlify Builder](https://github.com/ngx-builders/netlify-builder) built for the Angular CLI by [Santosh Yadav](https://www.santoshyadav.dev). It's _super_ easy to use. One thing I was hesitant 😬 about was putting my personal access token in the public `angular.json` file. Instead I made a script to deploy any project by passing in my token as an environment variable. Come code with me 🤗.
 
 ## First step: add the builder 🛠
 
@@ -10,7 +10,7 @@ To add the the builder we first want to add it to our Angular project with the h
 
 `ng add @netlify-builder/deploy`
 
-Running this command will walk us through setting up the builder. It first asks for the project API ID or Site ID of your Netlify project. We can find this by going to the project page clicking 'Settings' in the top menu, then 'Site Settings' under the 'General' menu tab (https://app.netlify.com/sites/\<your site name\>/settings/general#site-details) 
+Running this command will walk us through setting up the builder. It first asks for the project API ID or Site ID of your Netlify project. We can find this by going to the project page clicking 'Settings' in the top menu, then 'Site Settings' under the 'General' menu tab (https://app.netlify.com/sites/<your site name\>/settings/general#site-details) 
 
 ![screenshot of where to find the API ID](images/app-id.png)
 
